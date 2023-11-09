@@ -9,7 +9,7 @@ resource "aws_security_group" "Jenkins-sg" {
       from_port        = port
       to_port          = port
       protocol         = "tcp"
-      cidr_blocks      = ["0.0.0.0/0"]
+      cidr_blocks      = port == 22 ? ["91.189.139.56/32"] : ["0.0.0.0/0"]
       ipv6_cidr_blocks = []
       prefix_list_ids  = []
       security_groups  = []
@@ -31,9 +31,9 @@ resource "aws_security_group" "Jenkins-sg" {
 
 
 resource "aws_instance" "web" {
-  ami                    = "ami-0f5ee92e2d63afc18"
+  ami                    = "ami-0fc5d935ebf8bc3bc"
   instance_type          = "t2.medium"
-  key_name               = "Mumbai"
+  key_name               = "ec2_apache"
   vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
   user_data              = templatefile("./install_jenkins.sh", {})
 
