@@ -37,7 +37,7 @@
         name: jenkins
         state: present
 
-    - name: Make sure a service unit is running
+    - name: Start and enable Jenkins
       systemd:
         state: started
         name: jenkins
