@@ -6,9 +6,7 @@
 
   tasks:
     - name: Update all packages to their latest version
-      apt:
-        name: "*"
-        state: latest
+      shell: sudo apt-get update
 
     - name: Download Jenkins key
       get_url:
@@ -22,9 +20,7 @@
         filename: jenkins.list
 
     - name: Update all packages to their latest version
-      apt:
-        name: "*"
-        state: latest
+      shell: sudo apt-get update
 
     - name: Install Fontconfig
       shell: sudo apt install fontconfig -y
